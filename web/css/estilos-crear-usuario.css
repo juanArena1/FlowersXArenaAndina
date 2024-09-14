@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css?family=Cookie');
+@import url('https://fonts.googleapis.com/css?family=Kaushan+Script');
+@import url('https://fonts.googleapis.com/css?family=KoHo');
+@import url('https://fonts.googleapis.com/css?family=Slabo+27px');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Niramit');
+
+*{
+    box-sizing: border-box;
+    padding: 0px;
+}
+.borde{
+    /*border:1px solid black;*/
+}
+body{
+    font-family: 'Niramit', sans-serif;
+    background-color: #FAFAFA;
+    color: #B370B3;
+}
+h1 {
+    color: #666666;
+}
+.container {
+    max-width: 100%;
+}
+.titulo {
+    text-align: center;
+    padding-top: 3em;
+}
+.formulario {
+    padding-left: 5em;
+    padding-right: 5em;
+}
+.boton-registro {
+    border-color: #79B3AA;
+    color: #FFF;
+    background-color: #81CCC1;
+}
+.boton-registro:hover {
+    border-color: #79B3AA;
+    color: #FFF;
+    background-color: rgba(129,204,193,0.9);
+}
+.boton-registro:active {
+    border-color: #79B3AA;
+    box-shadow: 0 0 7px #B370B3;
+    color: #FFF;
+    background-color: rgba(129,204,193,0.7);
+}
+.select {
+    height: 20px;
+}
+.migas {
+    padding-top: 5em;
+}

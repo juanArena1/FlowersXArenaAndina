@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css?family=Cookie');
+@import url('https://fonts.googleapis.com/css?family=Kaushan+Script');
+@import url('https://fonts.googleapis.com/css?family=KoHo');
+@import url('https://fonts.googleapis.com/css?family=Slabo+27px');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Niramit');
+
+*{
+    box-sizing: border-box;
+    padding: 0px;
+    margin:0px;
+}
+.borde{
+    /*border:1px solid black;*/
+}
+body{
+    font-family: 'Niramit', sans-serif;
+    background-color: #81CCC1;
+    color: #B370B3;
+}
+h1 {
+    color: #FFF6D4;
+    -webkit-text-stroke: 1px #B370B3;
+    text-shadow:
+        3px 3px #B370B3,
+        -1px -1px 0 #B370B3,  
+        1px -1px 0 #B370B3,
+        -1px 1px 0 #B370B3,
+        1px 1px 0 #B370B3;
+    -webkit-text-stroke-width: 1px;
+}
+.container {
+    max-width: 100%;
+}
+.titulo {
+    text-align: center;
+    padding-top: 70px;
+}
+.tabla {
+    padding-left: 100px;
+    padding-right: 100px;
+}
+.busqueda{
+    padding-left: 150px;
+    padding-bottom: 10px;
+}
+th i{
+    font-size: 0.7em;
+}
+th i:hover {
+    color: #888;
+}
+th{
+    color: #444;
+}
+td{
+    color: #000;
+}
+.search:hover {
+    color: #888;
+}
+.thead-flowersx {
+    background-color: #79B3AA;
+}
+.ui-row-editor .ui-row-editor-pencil {
+    margin-left:8px;
+}
+.header{
+    text-align: center;
+}
+.opciones-tabla {
+    color:"#000";
+    margin-right: 10px;
+}
+.formulario {
+    padding-left: 140px;
+    padding-right: 140px;
+}
+.boton-registro {
+    border-color: #79B3AA;
+    color: #FFF;
+    background-color: #81CCC1;
+}
+.boton-registro:hover {
+    border-color: #79B3AA;
+    color: #FFF;
+    background-color: rgba(129,204,193,0.9);
+}
+.boton-registro:active {
+    border-color: #79B3AA;
+    box-shadow: 0 0 7px #B370B3;
+    color: #FFF;
+    background-color: rgba(129,204,193,0.7);
+}
+.boton-salir {
+	/*border-color: #B370B3;*/
+	color: #000;
+	background-color: #FFBBFF;
+}
+.boton-salir:hover {
+	/*border-color: #B370B3;*/
+	color: #000;
+	background-color: rgba(255,187,255,0.9);
+}
+.boton-salir:active {
+	/*border-color: #B370B3;*/
+	box-shadow: 0 0 7px #B370B3;
+	color: #000;
+	background-color: rgba(255,187,255,0.7);
+}
+

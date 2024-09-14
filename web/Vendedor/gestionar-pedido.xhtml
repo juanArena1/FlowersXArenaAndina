@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+   <h:head>
+        <meta charset="UTF-8"></meta>
+        <title>Gestionar pedidos</title>
+        <link rel="stylesheet" href="../../css/bootstrap.css"></link>
+        <link rel="stylesheet" href="../../css/all.min.css"></link>
+        <link rel="stylesheet" href="../../css/brands.css"></link>
+        <link rel="stylesheet" href="../../css/estilos-paginas.css"></link>
+        <link rel="stylesheet" href="../../css/estilos-gestionar-usuarios.css"></link>
+    </h:head>
+    <h:body>
+        <h:outputStylesheet name="../../css/bootstrap.css" />
+        <div data-spy="scroll" data-target="#" data-offset="0" class="container">
+            <div class="row">
+                <div class="col tabla">
+                    <f:view>
+                        <div class="col">
+                            <h1><h:outputText value="Pedidos"/></h1>
+                        </div>
+                        <f:view>
+                            <h:form>
+                                <p:dataTable id="tablaPedidos" class="table table-hover table-bordered" value="#{pedidoControlador.consultarPedido()}" var="item" widgetVar="pedidosTabla"
+                                             emptyMessage="No se han encontrado los criterios dados." filteredValue="#{pedidoControlador.consultarPedido()}">
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <p:outputPanel>
+                                                <h:outputText value="Buscar:" />
+                                                <p:inputText id="globalFilter" onkeyup="PF('pedidosTabla').filter()" style="width:150px" placeholder=""/>
+                                            </p:outputPanel>
+                                        </f:facet>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet class="header" name="header">
+                                            <h:outputText value="Fecha de creación" />
+                                        </f:facet>
+                                        <h:outputText value="#{item.fechaDeCreacion}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet class="header" name="header">
+                                            <h:outputText value="Fecha de envio"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.fechaDeEnvio}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet class="header" name="header">
+                                            <h:outputText value="Dirección de envio"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.direccionDeEnvio}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet class="header" name="header">
+                                            <h:outputText value="monto"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.monto}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet class="header" name="header">
+                                            <h:outputText value="Razón social"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.usuarioid.razonSocial}"/>
+                                    </p:column>                                                                        
+                                    <p:column>
+                                        <f:facet class="header" name="header">
+                                            <h:outputText value="Opciones"/>
+                                        </f:facet>                                     
+                                        <h:commandLink class="opciones-tabla" action="#{pedidoControlador.preEditarPedido(item)}" onclick="return confirm('¿Estás seguro?')"><i class="fas fa-pen" data-toggle="modal" data-target="#modalEditar"></i></h:commandLink>
+                                        <h:commandLink class="opciones-tabla" action="#{pedidoControlador.eliminarPedido(item)}" onclick="return confirm('¿Estás seguro?')"><i class="fas fa-trash-alt"></i></h:commandLink>
+                                    </p:column>
+                                </p:dataTable>
+                                <h3>Exportar datos a Microsoft Excel</h3>
+                                <h:commandLink>
+                                    <p:graphicImage name="images/excel.png" style="width:50px"/>
+                                    <p:dataExporter type="xls" target="tablaPedidos" fileName="Pedidos" pageOnly="true"/>
+                                </h:commandLink>
+                            </h:form>
+                        </f:view>
+                        <a href="crear-pedido.xhtml"><button type="button" class="boton-salir btn" data-toggle="tooltip" data-placement="bottom" title="Cerrar sesión y salir">
+                                Crear pedido
+                            </button>  
+                        </a> 
+                    </f:view>
+                </div>
+            </div>
+        </div>
+        <script src="../../js/popper.min.js"></script>
+        <script src="../../js/jquery.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script src="../../js/admin.js"></script>
+        <script src="../../js/main.js"></script>
+    </h:body>
+</html>

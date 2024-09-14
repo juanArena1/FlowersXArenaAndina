@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <meta charset="UTF-8"></meta>
+        <title>Gestionar solicitudes</title>
+        <link rel="stylesheet" href="../css/bootstrap.css"></link>
+        <link rel="stylesheet" href="../css/all.min.css"></link>
+        <link rel="stylesheet" href="../css/brands.css"></link>
+        <link rel="stylesheet" href="../css/estilos-paginas.css"></link>
+        <link rel="stylesheet" href="../css/estilos-gestionar-usuarios.css"></link>
+        <link href="../css/primefaces-omega.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>
+        <h:outputStylesheet name="../css/bootstrap.css" />
+        <div data-spy="scroll" data-target="#" data-offset="0" class="container">
+            <div class="row">
+                <div class="col tabla">
+                    <nav class="migas breadcrumb-nav" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="../main-usuario.xhtml">Inicio</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Gestión de solicitudes</li>
+                        </ol>
+                    </nav>
+                    <f:view>
+                        <style type="text/css">
+                            .ui-datatable .ui-datatable-header {
+                                text-align: right !important;
+                            }
+
+                            .ui-button-text-only .ui-button-text {
+                                padding: 0.3em 0.4em;
+                            }
+
+                            .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-chkbox {
+                                visibility: hidden;
+                            }
+
+                            .ui-filter-column .ui-column-customfilter .custom-filter {
+                                width: 100%;
+                                box-sizing: border-box;
+                            }
+                        </style>
+                        <div class="row">
+                            <div class="col-10 ">
+                                <h1><h:outputText value="#{msjGestionarSolicitudes.solicitudes}"/></h1>
+                            </div>
+                            <div class="col-2 text-right" style="padding-top: 1em">
+                                <a align="right" href="crear-solicitud.xhtml">
+                                    <p:commandButton type="button" value="#{msjCrearSolicitud.botonCrearSolicitud}" />
+                                </a>
+                            </div>
+                        </div>
+                        <h:form>
+                            <p:dataTable id="tablaSolicitudes" var="solicitud" value="#{solicitudControlador.consultarSolicitud()}" widgetVar="tablaSolicitudes" 
+                                         emptyMessage="No se han encontrado solicitudes con los criterios dados." filteredValue="#{solicitudControlador.listaSolicitudes}" 
+                                         resizableColumns="true" rows="10" paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="5,10,15" style="margin-bottom:20px">
+                                <f:facet name="header">
+                                    <p:outputPanel>
+                                        <h:outputText value="Buscar todos los campos: " />
+                                        <p:inputText id="globalFilter" onkeyup="PF('tablaSolicitudes').filter()" style="width:200px" placeholder="Palabra clave..."/>
+                                    </p:outputPanel>
+                                </f:facet>
+                                <p:column filterBy="#{solicitud.idSolicitud}" headerText="Id" filterMatchMode="contains">
+                                    <h:outputText value="#{solicitud.idSolicitud}" />
+                                </p:column>
+                                <p:column filterBy="#{solicitud.destinatario}" headerText="Destinatario" filterMatchMode="exact">
+                                    <f:facet name="filter">
+                                        <p:selectOneMenu onchange="PF('tablaSolicitudes').filter()">
+                                            <f:selectItem itemLabel="Seleccione uno..." itemValue="#{null}" noSelectionOption="true" />
+                                            <f:selectItems value="#{solicitudControlador.consultarSolicitud()}" var="destinatario" itemValue="#{destinatario.destinatario}" itemLabel="#{destinatario.destinatario}" />
+                                        </p:selectOneMenu>
+                                    </f:facet>
+                                    <h:outputText value="#{solicitud.destinatario}" />
+                                </p:column>
+                                <p:column filterBy="#{solicitud.fecha}" headerText="Fecha" filterMatchMode="contains">
+                                    <h:outputText value="#{solicitud.fecha}">
+                                        <f:convertDateTime pattern="dd-MM-yyyy" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column filterBy="#{solicitud.pedidoidPedido}" headerText="Id de pedido" filterMatchMode="contains">
+                                    <h:outputText value="#{solicitud.pedidoidPedido.idPedido}" />
+                                </p:column>
+                                <p:column filterBy="#{solicitud.usuarioid}" headerText="Usuario" filterMatchMode="contains">
+                                    <f:facet name="filter">
+                                        <p:selectOneMenu onchange="PF('tablaSolicitudes').filter()" styleClass="custom-filter">
+                                            <f:selectItem itemLabel="Seleccione uno..." itemValue="#{null}" noSelectionOption="true" />
+                                            <f:selectItems value="#{usuarioControlador.consultarUsuario()}" var="usuario" itemValue="#{usuario.id}" itemLabel="#{usuario.titular}" />
+                                        </p:selectOneMenu>
+                                    </f:facet>
+                                    <h:outputText value="#{solicitud.usuarioid.titular}" />
+                                </p:column>
+                                <p:column>
+                                        <f:facet class="header" name="header">
+                                            <h:outputText value="#{msjGestionarUsuarios.opciones}"/>
+                                        </f:facet>
+                                        <p:commandLink class="opciones-tabla" action="#{usuarioControlador.preEditarUsuario(user)}">
+                                            <i class="fas fa-pen"></i>
+                                            <p:confirm header="¡Alerta!" message="¿Estás seguro de que quieres editar este usuario?" icon="fas fa-exclamation-triangle" />
+                                        </p:commandLink>
+                                        <h:commandLink class="opciones-tabla" onclick="return confirm('¿Estás seguro?')" action="#{usuarioControlador.eliminarUsuario(user)}">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </h:commandLink>
+                                    </p:column>
+                            </p:dataTable>
+                            <h3>Exportar datos a Microsoft Excel</h3>
+                            <h:commandLink>
+                                <p:graphicImage name="images/excel.png" style="width:50px"/>
+                                <p:dataExporter type="xls" target="tablaSolicitudes" fileName="Solicitudes" pageOnly="true"/>
+                            </h:commandLink>
+                        </h:form>
+                    </f:view>
+                </div>
+            </div>
+        </div>
+        <script src="../../js/popper.min.js"></script>
+        <script src="../../js/jquery.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script src="../../js/admin.js"></script>
+        <script src="../../js/main.js"></script>
+    </h:body>
+</html>
+

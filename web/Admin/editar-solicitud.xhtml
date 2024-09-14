@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta charset="UTF-8"></meta>
+        <title>Editar Solicitud</title>
+        <link rel="stylesheet" href="../css/bootstrap.css"></link>
+        <link rel="stylesheet" href="../css/all.min.css"></link>
+        <link rel="stylesheet" href="../css/brands.css"></link>
+        <link rel="stylesheet" href="../css/estilos-paginas.css"></link>
+        <link rel="stylesheet" href="../css/estilos-crear-usuario.css"></link>
+        <link href="../css/primefaces-omega.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>
+        <div data-spy="scroll" data-target="#" data-offset="0" class="container">
+            <div class="titulo row">
+                <div class="col">
+                    <h1>Editar Solicitud</h1>
+                    <p>Por favor llena los siguientes datos.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <f:view>
+                        <style type="text/css">
+                            .ui-datalist .ui-datalist-content {
+                                border:0 none
+                            }
+
+                            .ui-datalist ul {
+                                padding: 0px 10px 0 20px;
+                                margin: 5px 0;
+                            }
+
+                            .value {
+                                font-weight: bold;
+                            }
+
+                            .ui-autocomplete-itemtip {
+                                -moz-box-sizing: content-box;
+                                -webkit-box-sizing: content-box;
+                                box-sizing: content-box;
+                            }
+                        </style>
+                        <h:form class="formulario" enctype="multipart/form-data">
+                            <div class="form-row">
+                                <div class="col-2 md-1 mb-1">
+                                    <h:outputLabel value="Id de la Solicitud:" for="idSolicitud" />
+                                    <p:inputText class="form-control" pt:placeholder="Id de la Solicitud" id="idSolicitud" value="#{solicitudControlador.solicitud.idSolicitud}" title="IdSolicitud" required="true" requiredMessage="The IdSolicitud field is required."/>
+                                </div>
+                                <script type="text/javascript">
+                                    PrimeFaces.locales['es'] = {
+                                        closeText: 'Cerrar',
+                                        prevText: 'Anterior',
+                                        nextText: 'Siguiente',
+                                        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                                        monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                                        dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                                        dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+                                        dayNamesMin: ['D', 'L', 'M', 'X', 'J', 'V', 'S'],
+                                        weekHeader: 'Semana',
+                                        firstDayOfWeek: 1,
+                                        isRTL: false,
+                                        showMonthAfterYear: false,
+                                        yearSuffix: '',
+                                        timeOnlyTitle: 'Sólo hora',
+                                        timeText: 'Tiempo',
+                                        hourText: 'Hora',
+                                        minuteText: 'Minuto',
+                                        secondText: 'Segundo',
+                                        currentText: 'Fecha actual',
+                                        ampm: false,
+                                        month: 'Mes',
+                                        week: 'Semana',
+                                        day: 'Día',
+                                        allDayText: 'Todo el día'
+                                    };
+                                </script>
+                                <style type="text/css">
+                                    .value {
+                                        font-weight: bold;
+                                    }
+                                </style>
+                                <div class="col-3 md-3 mb-3">
+                                    <p:outputLabel value="Fecha:" /><br />
+                                    <p:calendar id="button" value="#{solicitudControlador.solicitud.fecha}" locale="es" pt:placeholder="AAAA-MM-DD" pattern="yyyy-MM-dd" showOn="button" />
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-6 md-4 mb-4">
+                                    <h:outputLabel value="Destinatario:" for="destinatario" />
+                                    <p:inputText class="form-control" pt:placeholder="Destinatario" id="destinatario" value="#{solicitudControlador.solicitud.destinatario}" title="Destinatario" required="true" requiredMessage="The Destinatario field is required."/>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <h:outputLabel value="Soporte:" for="soporte1" />
+                                <h:inputFile class="form-control-file" pt:placeholder="Soporte:" id="soporte1" value="#{solicitudControlador.file}" title="Soporte1" required="true" requiredMessage="The Soporte1 field is required."/>
+                                <h:outputLabel value="Soporte adicional:" for="soporte2" />
+                                <h:inputFile class="form-control-file" pt:placeholder="Soporte adicional:" id="soporte2" value="#{solicitudControlador.file1}" title="Soporte2" />
+                                <h:outputLabel value="Soporte adicional:" for="soporte3" />
+                                <h:inputFile class="form-control-file" pt:placeholder="Soporte adicional" id="soporte3" value="#{solicitudControlador.file2}" title="Soporte3" />
+                            </div>
+                            <div class="form-row">
+                                <div class="col md-3 mb-3">
+                                    <h:outputLabel value="Id de Pedido:" for="pedidoidPedido" />
+                                    <p:selectOneMenu class="form-control" pt:placeholder="Id de Pedido" id="pedidoidPedido" value="#{solicitudControlador.pedido.idPedido}" required="true" requiredMessage="The PedidoidPedido field is required.">
+                                        <!-- TODO: update below reference to list of available items-->
+                                        <f:selectItems class="dropdown-item" value="#{pedidoControlador.listar()}" var="pedido" itemValue="#{pedido.idPedido}" itemLabel="#{pedido.idPedido}"/>
+                                    </p:selectOneMenu>
+                                </div>
+                                <div class="col md-3 mb-3">
+                                    <h:outputLabel value="Id de Usuario:" for="usuarioid" />
+                                    <p:inputText class="form-control" id="usuarioid" value="#{usuarioControlador.usuarioLogueado.id}" title="Usuarioid" readonly="true" />
+                                </div>
+                            </div>
+                            <h:commandButton class="btn boton-registro" action="#{solicitudControlador.editarSolicitud()}" value="Crear solicitud" />
+                        </h:form>
+                    </f:view>
+                </div>
+            </div>
+        </div>
+        <script src="../../js/popper.min.js"></script>
+        <script src="../../js/jquery.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script src="../../js/main.js"></script>
+        <script src="../../js/formularios.js"></script>
+    </h:body>
+</html>
+

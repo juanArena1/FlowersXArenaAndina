@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <meta charset="UTF-8"></meta>
+        <title>Gestionar Novedades</title>
+        <link rel="stylesheet" href="../css/bootstrap.css"></link>
+        <link rel="stylesheet" href="../css/all.min.css"></link>
+        <link rel="stylesheet" href="../css/brands.css"></link>
+        <link rel="stylesheet" href="../css/estilos-paginas.css"></link>
+        <link rel="stylesheet" href="../css/estilos-gestionar-usuarios.css"></link>
+        <link href="../css/primefaces-omega.css" rel="stylesheet" type="text/css"/>
+        <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces"/>
+    </h:head>
+    <h:body>
+        <f:view locale="#{sessionController.idiomaSeleccionado}">
+            <div data-spy="scroll" data-target="#" data-offset="0" class="container">
+                <div class="row">
+                    <div class="col tabla">
+                        <nav class="breadcrumb-nav" aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="../main-usuario.xhtml"><h:outputText value="#{msjIndex.menuInicio}"/></a></li>
+                                <li class="breadcrumb-item active" aria-current="page"><h:outputText value="#{msjListaNovedad.GestionarNovedad}"/></li>
+                            </ol>
+                        </nav>
+                        <style type="text/css">
+                            .ui-datatable .ui-datatable-header {
+                                text-align: right !important;
+                            }
+
+                            .ui-button-text-only .ui-button-text {
+                                padding: 0.3em 0.4em;
+                            }
+
+                            .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-chkbox {
+                                visibility: hidden;
+                            }
+
+                            .ui-filter-column .ui-column-customfilter .custom-filter {
+                                width: 100%;
+                                box-sizing: border-box;
+                            }
+
+                            .year-spinner input {
+                                width: 100%;
+                                box-sizing: border-box;
+                            }
+                        </style>
+                        <!-- Modal del Reporte -->
+                        <div class="row">
+                            <div class="col-7">
+                                <h1><h:outputText value="#{msjListaNovedad.novedad}"/></h1>
+                            </div>
+                            <div class="col-3" style="padding-top: 1em">
+                                <h:form id="form">
+                                    <p:commandButton id="reporte" style="width: 13em" value="#{msjListaNovedad.GestionarReporte}" type="button" />
+                                    <br></br>
+                                    <p:overlayPanel style="width: 30em" id="imagePanel" for="reporte" hideEffect="fade">
+                                        <h:outputText style="font-size: 1.5em" value="#{msjListaNovedad.GestionarReporte}"/>
+                                        <br/>
+                                        <h:outputLabel value="#{msjListaNovedad.Fechainicio}"/>
+                                        <br/>
+                                        <p:inputText class="form-groug mr-5 rounded-2" pt:type="date" pt:min="2018/01/02" pt:data-date-format="YYYY-MMMM-DD" value="#{controladorFechas.fechaI}" >
+                                            <f:convertDateTime pattern="yyyy-MM-dd"> </f:convertDateTime>
+                                        </p:inputText>
+                                        <br/>
+                                        <h:outputLabel value="#{msjListaNovedad.FechaFin}"/>
+                                        <br/>
+                                        <p:inputText class="form-group" pt:type="date" pt:min="2018/01/02" pt:data-date-format="YYYY-MMMM-DD" value="#{controladorFechas.fechaF}" >
+                                            <f:convertDateTime pattern="yyyy-MM-dd"> </f:convertDateTime>
+                                        </p:inputText>
+                                        <br></br>
+                                        <h:commandLink value="#{msjListaNovedad.descargarReporte}" action="#{controladorFechas.descargarNovedad()}" /> 
+                                    </p:overlayPanel>
+                                </h:form>
+                            </div>
+                            <div class="col-2 text-right" style="padding-top: 1em">
+                                <a align="right" href="crear-novedad.xhtml">
+                                    <p:commandButton style="width: 12em" type="button" value="#{msjCrearNovedad.botonCrearNovedad}" />
+                                </a>
+                            </div>
+                        </div>
+                        <f:view>
+                            <h:form>
+                                <p:dataTable var="user" value="#{novedadControlador.consultarNovedad()}" widgetVar="tablaNovedades"
+                                             emptyMessage="#{msjGestionarUsuarios.mensajeVacio}" filteredValue="#{novedadControlador.listaNovedades}" rows="10"
+                                             paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                             rowsPerPageTemplate="5,10,15" resizableColumns="true">
+                                    <f:facet name="header">
+                                        <p:outputPanel>
+                                            <h:outputText value="#{msjGestionarUsuarios.todosLosCampos}" />
+                                            <p:inputText id="globalFilter" onkeyup="PF('tablaNovedades').filter()" style="width:200px" placeholder="#{msjGestionarUsuarios.palabraClave}"/>
+                                        </p:outputPanel>
+                                    </f:facet>
+                                    <p:column filterBy="#{user.idNovedad}" headerText="ID" filterMatchMode="contains">
+                                        <h:outputText value="#{user.idNovedad}" />
+                                    </p:column>
+                                    <p:column filterBy="#{user.descripcion}" headerText="#{msjListaNovedad.Descirpcion}" filterMatchMode="contains">
+                                        <h:outputText value="#{user.descripcion}" />
+                                    </p:column>
+                                    <p:column filterBy="#{user.fecha}" headerText="#{msjCrearNovedad.fecha}" filterMatchMode="contains">
+                                        <h:outputText value="#{user.fecha}" />
+                                    </p:column>
+                                    <p:column filterBy="#{user.tipoNovedad}" headerText="#{msjListaNovedad.Tiponovedad}" filterMatchMode="exact">
+                                        <f:facet name="filter">
+                                            <p:selectOneMenu onchange="PF('tablaNovedades').filter()" styleClass="custom-filter">
+                                                <f:selectItem itemLabel="#{msjCrearUsuario.lblCiudad}" itemValue="#{null}" noSelectionOption="true" />
+                                                <f:selectItems value="#{tipoNovedadControlador.listar()}" var="tipoNovedad" itemValue="#{tipoNovedad.nombre}" itemLabel="#{tipoNovedad.nombre}" />
+                                            </p:selectOneMenu>
+                                        </f:facet>
+                                        <h:outputText value="#{user.tipoNovedad.nombre}" />
+                                    </p:column>
+                                    <p:column filterBy="#{user.pedido}" headerText="#{msjCrearNovedad.idPedido}" filterMatchMode="exact">
+                                        <f:facet name="filter">
+                                            <p:selectOneMenu onchange="PF('tablaNovedades').filter()" styleClass="custom-filter">
+                                                <f:selectItem itemLabel="#{msjCrearUsuario.lblPais}" itemValue="#{null}" noSelectionOption="true" />
+                                                <f:selectItems value="#{pedidoControlador.listaPedidos}" var="pedido" itemValue="#{pedido.idPedido}" itemLabel="#{pedido.idPedido}" />
+                                            </p:selectOneMenu>
+                                        </f:facet>
+                                        <h:outputText value="#{user.pedido.idPedido}" />
+                                    </p:column>
+                                    <p:column filterBy="#{user.usuarioid.nombreTitular}" headerText="#{msjListaNovedad.usuario}" filterMatchMode="in">
+                                        <f:facet name="filter">
+                                            <p:selectCheckboxMenu label="Usuarios" onchange="PF('tablaNovedades').filter()" scrollHeight="150" styleClass="custom-filter">
+                                                <f:selectItems value="#{usuarioControlador.consultarUsuario()}" var="usuario" itemValue="#{usuario.id}" itemLabel="#{usuario.nombreTitular}" />
+                                            </p:selectCheckboxMenu>
+                                        </f:facet>
+                                        <h:outputText value="#{user.usuarioid.nombreTitular}" />
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet class="header" name="header">
+                                            <h:outputText value="#{msjGestionarUsuarios.opciones}"/>
+                                        </f:facet>
+                                        <p:commandLink class="opciones-tabla" action="#{novedadControlador.preEditarNovedad(user)}">
+                                            <i class="fas fa-pen"></i>
+                                            <p:confirm header="¡Alerta!" message="¿Estás seguro de que quieres editar esta novedad" icon="fas fa-exclamation-triangle" />
+                                        </p:commandLink>
+                                        <h:commandLink class="opciones-tabla" onclick="return confirm('¿Estás seguro?')" action="#{novedadControlador.eliminarNovedad(user)}">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </h:commandLink>
+                                    </p:column>
+                                </p:dataTable>
+                                <br/>
+                                <h5>#{msjGestionarUsuarios.excel}</h5>
+                                <h:commandLink>
+                                    <img src="../Archivos/excel.png" style="width:50px" alt="Excel"/>
+                                    <p:dataExporter type="xls" target="tablaNovedades" fileName="Novedades" pageOnly="true"/>
+                                </h:commandLink>
+                            </h:form>
+                        </f:view>
+                        <br/>
+                    </div>
+                </div>
+            </div>
+        </f:view>
+        <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+            <p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes" icon="fas fa-check" />
+            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="fas fa-times" />
+        </p:confirmDialog>
+        <script src="../../js/popper.min.js"></script>
+        <script src="../../js/jquery.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script src="../../js/admin.js"></script>
+        <script src="../../js/main.js"></script>
+    </h:body>
+</html>

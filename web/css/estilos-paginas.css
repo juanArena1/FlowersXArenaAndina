@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css?family=Cookie');
+@import url('https://fonts.googleapis.com/css?family=Kaushan+Script');
+@import url('https://fonts.googleapis.com/css?family=KoHo');
+@import url('https://fonts.googleapis.com/css?family=Slabo+27px');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Niramit');
+
+*{
+    box-sizing: border-box;
+    padding: 0px;
+    margin:0px;
+}
+.borde{
+    /*border:1px solid black;*/
+}
+body{
+    font-family: 'Niramit', sans-serif;
+    background-color: #FAFAFA;
+}
+.container {
+    max-width: 100%;
+}
+.texto {
+    padding-top: 280px;
+    text-align: right;
+    color: #666666;
+}
+.texto p {
+    font-size: 1.5em;
+}
+.imagen {
+    padding-top: 150px;
+    padding-left: 150px;
+}
+.imagen img {
+    height: 420px;
+    width: auto;
+}
+.boton-ingreso {
+    /*border-color: #B370B3;*/
+    color: #FFF;
+    background-color: #FFBBFF;
+}
+.boton-ingreso:hover {
+    /*border-color: #B370B3;*/
+    color: #FFF;
+    background-color: rgba(255,187,255,0.9);
+}
+.boton-ingreso:active {
+    /*border-color: #B370B3;*/
+    box-shadow: 0 0 7px #B370B3;
+    color: #FFF;
+    background-color: rgba(255,187,255,0.7);
+}
+.boton-registro {
+    /*border-color: #79b3aa;*/
+    color: #FFF;
+    background-color: #81CCC1;
+}
+.boton-registro:hover {
+    /*border-color: #79b3aa;*/
+    color: #FFF;
+    background-color: rgba(129,204,193,0.9);
+}
+.boton-registro:active {
+    /*border-color: #79b3aa;*/
+    box-shadow: 0 0 7px #79b3aa;
+    color: #FFF;
+    background-color: rgba(129,204,193,0.7);
+}
+.accordion {
+    width: 100%;
+}
+.titulo-jumbotron {
+    font-family: 'Niramit', sans-serif;
+}
+.jumbotron {
+    padding: 2rem;
+    margin-bottom: 3rem;
+    margin-left: 3rem;
+    margin-right: 3rem;
+    margin-top: 1rem;
+}

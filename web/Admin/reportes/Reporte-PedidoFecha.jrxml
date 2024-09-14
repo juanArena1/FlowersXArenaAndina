@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4bf1cbae-6c4a-4739-8773-f5333924773c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="303"/>
+	<parameter name="fechaI" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fechaF" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     pedido.`fechaDeCreacion` AS pedido_fechaDeCreacion,COUNT(*),
+     pedido.`total` AS pedido_total,
+     pedido.`Usuario_id` AS pedido_Usuario_id,
+     usuario.`id` AS usuario_id,
+     usuario.`nombre_titular` AS usuario_nombre_titular,
+     usuario.`apellido_titular` AS usuario_apellido_titular,
+     usuario.`razonSocial` AS usuario_razonSocial,
+     rol.`nombre` AS rol_nombre
+FROM
+     `usuario` usuario INNER JOIN `pedido` pedido ON usuario.`id` = pedido.`Usuario_id`
+     INNER JOIN `rol` rol ON usuario.`Rol` = rol.`idRol`
+
+WHERE   pedido.`fechaDeCreacion` between $P{fechaI} and $P{fechaF} GROUP BY  pedido.fechaDeCreacion]]>
+	</queryString>
+	<field name="pedido_fechaDeCreacion" class="java.sql.Date"/>
+	<field name="COUNT(*)" class="java.lang.Long"/>
+	<field name="pedido_total" class="java.lang.Double"/>
+	<field name="pedido_Usuario_id" class="java.lang.Integer"/>
+	<field name="usuario_id" class="java.lang.Integer"/>
+	<field name="usuario_nombre_titular" class="java.lang.String"/>
+	<field name="usuario_apellido_titular" class="java.lang.String"/>
+	<field name="usuario_razonSocial" class="java.lang.String"/>
+	<field name="rol_nombre" class="java.lang.String"/>
+	<background>
+		<band height="802" splitType="Stretch">
+			<image>
+				<reportElement x="246" y="680" width="1348" height="122" uuid="5fdde252-1129-4918-a153-9b4386e59902"/>
+				<imageExpression><![CDATA["C:\\Users\\Aprendiz\\Documents\\NetBeansProjects\\FlowersXProyecto\\web\\img\\bottom-reporte.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="0" y="0" width="767" height="179" uuid="6c15d19c-210a-4aea-a813-63d717131b13"/>
+				<imageExpression><![CDATA["C:\\Users\\Aprendiz\\Documents\\NetBeansProjects\\FlowersXProyecto\\web\\img\\top-reporte.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="440" y="0" width="100" height="20" uuid="56629f94-fb0e-4526-ba77-0411b172e2dc"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="107" height="20" uuid="2dfaf96d-439f-48ad-a364-1dfda5c674e0"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Nombre Titular]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="121" y="0" width="137" height="20" uuid="6a415178-9194-4be7-944a-559cfbb143e2"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Apellido Titular]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="0" width="100" height="20" uuid="4ee39e38-366c-40d9-bf48-d89ee6c96bba"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Fecha De Creación]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<textField>
+				<reportElement x="440" y="0" width="100" height="20" uuid="53535bee-023e-4bcd-9231-566c342259cd"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{COUNT(*)}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="107" height="20" uuid="e1dc24af-996a-4a73-a359-082d11c207ac"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{usuario_nombre_titular}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="121" y="0" width="137" height="20" uuid="c2159fb1-8329-44a4-9d21-6c7cdfed8ae4"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{usuario_apellido_titular}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="0" width="100" height="20" uuid="ea1ce879-ca83-4a84-a99d-982706e5c77d"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{pedido_fechaDeCreacion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

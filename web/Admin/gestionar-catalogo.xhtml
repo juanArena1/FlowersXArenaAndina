@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <link rel="stylesheet" href="../css/bootstrap.css"></link>
+        <link rel="stylesheet" href="../css/all.min.css"></link>
+        <link rel="stylesheet" href="../css/brands.css"></link>
+        <link rel="stylesheet" href="../css/estilos-paginas.css"></link>
+        <link rel="stylesheet" href="../css/estilos-gestionar-usuarios.css"></link>
+        <link href="../css/primefaces-omega.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>
+        <h:outputStylesheet name="../css/bootstrap.css" />
+        <div data-spy="scroll" data-target="#" data-offset="0" class="container">
+            <div class="row">
+                <div class="col tabla">
+                    <nav class="migas breadcrumb-nav" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="../main-usuario.xhtml">Inicio</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Gestión de catálogo</li>
+                        </ol>
+                    </nav>
+                    <f:view>
+                        <f:view>
+                            <style type="text/css">
+                                .ui-datatable .ui-datatable-header {
+                                    text-align: right !important;
+                                }
+                                .ui-button-text-only .ui-button-text {
+                                    padding: 0.3em 0.4em;
+                                }
+                                .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-chkbox {
+                                    visibility: hidden;
+                                }
+                                .ui-filter-column .ui-column-customfilter .custom-filter {
+                                    width: 100%;
+                                    box-sizing: border-box;
+                                }
+                            </style>
+                            <div class="row">
+                                <div class="col-6">
+                                    <h1><h:outputText value="#{msjGestionarCatalogo.catalogo}"/></h1>
+                                </div>
+                                <div class="col-2 text-right" style="padding-top: 1.4em; font-size: 0.9em">
+                                    <h:form>
+                                        <h:commandLink value="Ver productos más vendidos (PDF)" action="#{controladorFechas.reporteProductos()}" /> 
+                                    </h:form>
+                                </div>
+                                <div class="col-2 text-right" style="padding-top: 1em">
+                                    <a align="right" href="grafica.xhtml">
+                                        <p:commandButton type="button" action="grafica.xhtml?faces-redirect=true" value="#{msjGestionarCatalogo.botonExistencias}" />
+                                    </a>
+                                </div>
+                                <div class="col-2 text-right" style="padding-top: 1em">
+                                    <a align="right" href="registrar-producto.xhtml">
+                                        <p:commandButton type="button" value="#{msjRegistrarProducto.botonRegistrarProducto}" />
+                                    </a>
+                                </div>
+                            </div>
+                            <h:form>
+                                <p:dataTable id="tablaProducto" var="producto" value="#{productoControlador.listar()}" widgetVar="tablaProducto" 
+                                             emptyMessage="No se han encontrado productos con los criterios dados." filteredValue="#{productoControlador.listaProductos}" 
+                                             resizableColumns="true" rows="10" paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                             rowsPerPageTemplate="5,10,15" style="margin-bottom:20px">
+                                    <f:facet name="header">
+                                        <p:outputPanel>
+                                            <h:outputText value="Buscar todos los campos: " />
+                                            <p:inputText id="globalFilter" onkeyup="PF('tablaProducto').filter()" style="width:200px" placeholder="Palabra clave..."/>
+                                        </p:outputPanel>
+                                    </f:facet>
+                                    <p:column filterBy="#{producto.idProducto}" headerText="Id" filterMatchMode="contains">
+                                        <h:outputText value="#{producto.idProducto}" />
+                                    </p:column>
+                                    <p:column filterBy="#{producto.nombreProducto}" headerText="Nombre de producto" filterMatchMode="exact">
+                                        <f:facet name="filter">
+                                            <p:selectOneMenu onchange="PF('tablaProducto').filter()">
+                                                <f:selectItem itemLabel="Seleccione uno..." itemValue="#{null}" noSelectionOption="true" />
+                                                <f:selectItems value="#{productoControlador.listar()}" var="producto" itemValue="#{producto.nombreProducto}" itemLabel="#{producto.nombreProducto}" />
+                                            </p:selectOneMenu>
+                                        </f:facet>
+                                        <h:outputText value="#{producto.nombreProducto}" />
+                                    </p:column>
+                                    <p:column filterBy="#{producto.tiempoDeCultivo}" headerText="Tiempo de Cultivo" filterMatchMode="contains">
+                                        <h:outputText value="#{producto.tiempoDeCultivo}" />
+                                    </p:column>
+                                    <p:column filterBy="#{producto.existencias}" headerText="Existencias" filterMatchMode="contains">
+                                        <h:outputText value="#{producto.existencias}" />
+                                    </p:column>
+                                    <p:column filterBy="#{producto.precio}" headerText="Precio" filterMatchMode="contains">
+                                        <h:outputText value="#{producto.precio}">
+                                            <f:convertNumber type="currency" currencySymbol="$" />
+                                        </h:outputText>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet class="header" name="header">
+                                            <h:outputText value="#{msjGestionarUsuarios.opciones}"/>
+                                        </f:facet>
+                                        <p:commandLink class="opciones-tabla" action="#{productoControlador.preEditarProducto(producto)}">
+                                            <i class="fas fa-pen"></i>
+                                            <p:confirm header="¡Alerta!" message="¿Estás seguro de que quieres editar este producto?" icon="fas fa-exclamation-triangle" />
+                                        </p:commandLink>
+                                        <h:commandLink class="opciones-tabla" onclick="return confirm('¿Estás seguro?')" action="#{productoControlador.eliminarProducto(producto)}">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </h:commandLink>
+                                    </p:column>
+                                </p:dataTable>
+                                <h3>Exportar datos a Microsoft Excel</h3>
+                                <h:commandLink>
+                                    <img src="../Archivos/excel.png" style="width: 3em" alt="Excel"/>
+                                    <p:dataExporter type="xls" target="tablaProducto" fileName="Producto" pageOnly="true"/>
+                                </h:commandLink>
+                            </h:form>
+                        </f:view>
+                    </f:view>
+                </div>
+            </div>
+        </div>
+        <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+            <p:commandButton style="width: 7em;" value="Sí" type="button" styleClass="ui-confirmdialog-yes" icon="fas fa-check" />
+            <p:commandButton style="width: 7em;" value="No" type="button" styleClass="ui-confirmdialog-no" icon="fas fa-times" />
+        </p:confirmDialog>
+        <script src="../../js/popper.min.js"></script>
+        <script src="../../js/jquery.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script src="../../js/admin.js"></script>
+        <script src="../../js/main.js"></script>
+    </h:body>
+</html>

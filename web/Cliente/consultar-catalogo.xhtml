@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <meta charset="UTF-8"></meta>
+        <title>Consultar catálogo</title>
+        <link rel="stylesheet" href="../css/bootstrap.css"></link>
+        <link rel="stylesheet" href="../css/all.min.css"></link>
+        <link rel="stylesheet" href="../css/brands.css"></link>
+        <link rel="stylesheet" href="../css/estilos-paginas.css"></link>
+        <link rel="stylesheet" href="../css/estilos-crear-usuario.css"></link>
+        <link href="../css/primefaces-omega.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>
+        <div data-spy="scroll" data-target="#" data-offset="0" class="container">
+            <nav class="migas breadcrumb-nav" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../main-usuario.xhtml">Inicio</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Consultar catálogo</li>
+                </ol>
+            </nav>
+            <div class="titulo row">
+                <div class="col">
+                    <h1>Consultar catálogo</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="jumbotron jumbotron-fluid">
+                        <div class="container">
+                            <f:view>
+                                <style type="text/css">
+                                    .ui-datalist .ui-datalist-content {
+                                        border:0 none
+                                    }
+
+                                    .ui-datalist ul {
+                                        padding: 0px 10px 0 20px;
+                                        margin: 5px 0;
+                                    }
+
+                                    .value {
+                                        font-weight: bold;
+                                    }
+
+                                    .ui-autocomplete-itemtip {
+                                        -moz-box-sizing: content-box;
+                                        -webkit-box-sizing: content-box;
+                                        box-sizing: content-box;
+                                    }
+                                </style>
+                                <h:form>
+                                    <div class="form-row">
+                                        <div class="col-md-12 mb-12">
+                                            <c:forEach items="#{productoControlador.listar()}" var="p">
+                                                <div class="col-md-6 mb-6" style="float:left">
+                                                    <p:panelGrid columns="2" style="margin: 1em">
+                                                        <f:facet name="header">
+                                                            <img src="#{p.foto}" style="overflow: hidden; height: 20em; width: 45em; object-fit: cover" alt="..." />
+                                                        </f:facet>
+
+                                                        <h:outputText value="#{p.nombreProducto}" />
+                                                        <c:if test="#{p.existencias eq 0}">
+                                                            <h:outputText value="#{msjCrearPedido.agotada}" />
+                                                        </c:if>
+                                                        <c:if test="#{!(p.existencias eq 0)}">
+                                                            <h:outputText value="#{msjCrearPedido.disponible}" />
+                                                        </c:if>
+                                                    </p:panelGrid>
+                                                </div>
+                                            </c:forEach>
+                                        </div>
+                                    </div>
+                                </h:form>
+                            </f:view>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="js/jquery-3.4.1.js" type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" type="text/javascript"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="../js/main.js" type="text/javascript"></script>
+        <script src="../js/formularios.js" type="text/javascript"></script>
+    </h:body>
+</html>
+

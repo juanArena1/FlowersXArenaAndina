@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Ver existencias</title>
+        <link rel="stylesheet" href="../css/bootstrap.css"></link>
+        <link rel="stylesheet" href="../css/all.min.css"></link>
+        <link rel="stylesheet" href="../css/brands.css"></link>
+        <link rel="stylesheet" href="../css/estilos-paginas.css"></link>
+        <link rel="stylesheet" href="../css/estilos-gestionar-usuarios.css"></link>
+        <link href="../css/primefaces-omega.css" rel="stylesheet" type="text/css"/>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    </h:head>
+    <h:body>
+        <div data-spy="scroll" data-target="#" data-offset="0" class="container">
+            <nav class="migas breadcrumb-nav" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../main-usuario.xhtml">Inicio</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><a href="gestionar-catalogo.xhtml">Gestión de catálogo</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Ver existencias</li>
+                </ol>
+            </nav>
+            <div class="titulo row">
+                <div class="col">
+                    <h1>Detalle de productos</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="jumbotron jumbotron-fluid">
+                        <div class="container">
+                            <h:form>
+                                <p:commandButton value="Mostrar" id="graficar" update="hpgGrafico"  actionListener="#{chartBean.graficar()}"/>    
+                                <h:panelGroup id="hpgGrafico" layout="blocked">
+                                    <p:chart type="bar" id="bar" model="#{chartBean.barra}" style="width: 40em; height: 30em " rendered="#{chartBean.barra !=null}"/>
+                                    <p:chart type="pie" id="pastel" model="#{chartBean.pastel}" style="width: 40em; height: 30em " rendered="#{chartBean.pastel !=null}"/>
+                                </h:panelGroup>
+                            </h:form>
+                            
+
+                            <div class="row">
+                                <canvas id="graficoVendidos" style="height: 30em"></canvas>
+                                <script>
+                                    var ctx = document.getElementById('graficoVendidos').getContext('2d');
+                                    var chart = new Chart(ctx, {
+                                        // The type of chart we want to create
+                                        type: 'bar',
+
+                                        // The data for our dataset
+                                        data: {
+                                            labels: [getElementById.('nombreProducto1').value, getElementById.('nombreProducto2').value, getElementById.('nombreProducto3').value, getElementById.('nombreProducto4').value, getElementById.('nombreProducto5').value],
+                                                    datasets: [{
+                                                            label: 'Productos más vendidos',
+                                                            backgroundColor: '#FFBBFF',
+                                                            borderColor: '#B370B3',
+                                                            data: [getElementById('ventasProducto1').value, getElementById('ventasProducto2').value, getElementById('ventasProducto3').value, getElementById('ventasProducto4').value, getElementById('ventasProducto5').value]
+                                                        }]
+                                        },
+
+                                        // Configuration options go here
+                                        options: {}
+                                    });
+                                </script>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="../../js/popper.min.js"></script>
+        <script src="../../js/jquery.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script src="../../js/main.js"></script>
+        <script src="../../js/formularios.js"></script>
+    </h:body>
+</html>
+

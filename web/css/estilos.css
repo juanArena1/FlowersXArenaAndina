@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css?family=Cookie');
+@import url('https://fonts.googleapis.com/css?family=Kaushan+Script');
+@import url('https://fonts.googleapis.com/css?family=KoHo');
+@import url('https://fonts.googleapis.com/css?family=Slabo+27px');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Niramit');
+*{
+	box-sizing: border-box;
+	padding:0px;
+	margin: 0px;
+}
+.container {
+	max-width: 91%;
+}
+.borde{
+	border:1px solid gray;
+}
+.titulo{
+	padding-top: 60px;
+	padding-bottom: 10px;
+	background-color: rgba(0,0,0,0.5);
+	text-align: center;
+	color: #FFBBFF;
+	font-size:1.5em;
+	margin: 0;
+}
+body{
+	/*background-image: linear-gradient(#B370B3,#FFBBFF,#FFF6D4,#81CCC1,#79B3AA);*/
+        background-color: #FFDFFF;
+	/*background-image: url('../img/hydrangea-2_1920.jpg');*/
+	/*background-image: url('../img/intentobg.png');*/
+	/*background-attachment: fixed;*/
+	font-family: 'Niramit', sans-serif;
+}
+/*Botón de regreso*/
+#regresar {
+	display: none;
+	background-color: rgba(0,0,0,0.5);
+	width: 50px;
+	height: 35px;
+	text-align: center;
+	border: 1px rgba(0,0,0,0.3);
+	border-radius: 4px;
+	margin: 30px;
+	position: fixed;
+	bottom: 0px;
+	right: 0px;
+	transition: background-color .3s;
+	z-index: 1000;
+	padding-bottom: 8px;
+}
+#regresar span{
+	color: #999999;
+}
+#regresar:hover {
+	cursor: pointer;
+	background-color: #333;
+}
+#regresar:active {
+	background-color: #555;
+}
+/*Botón de checkout*/
+#checkout {
+        display: none;
+	background-color: #81CCC1;
+	width: 50px;
+	height: 35px;
+	text-align: center;
+	border: 1px rgba(0,0,0,0.3);
+	border-radius: 4px;
+	margin-bottom: 30px;
+        margin-right: 100px;
+	position: fixed;
+	bottom: 0px;
+	right: 0px;
+	transition: background-color .3s;
+	z-index: 1000;
+	padding-bottom: 8px;
+}
+#checkout span{
+	color: #FFFFFF;
+}
+#checkout:hover {
+	cursor: pointer;
+	background-color: #81AAC1;
+}
+#checkout:active {
+	background-color: #8188C1;
+}
+/*Botones del menú*/
+.navbar {
+	background-color: #FFF;
+}
+.navbar-brand{
+	margin: 0;
+}
+.navbar-brand img{
+	width: 140px;
+	height: auto;
+	margin-right: 20px;
+}
+.navbar-brand:hover {
+
+}
+.navbar-nav li a {
+	margin: 5px;
+}
+
+.navbar-nav li button {
+	margin: 5px;
+	width: 120px;
+}
+#navegador {
+	-webkit-transition: background-color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out;
+}
+#navegador.navbar-encoger {
+	height: 50px;
+	background: rgba(0,0,0,0.7);
+}
+#navegador.navbar-encoger .navbar-brand {
+
+	color: #FFFFFF;	
+}
+#navegador.navbar-encoger .navbar-brand img{
+	width: 100px;
+	height: auto;
+}
+#navegador.navbar-encoger .nav-link {
+	color: #FFFFFF;
+	padding: 0;
+}
+#navegador.navbar-encoger .nav-link:hover {
+	color: #AAAAAA;
+}
+#navegador.navbar-encoger .nav-link:active {
+	color: #AAAAAA;
+}
+#navegador.navbar-encoger .nav-link.active {
+	color: #BBBBBB;
+	outline: none;
+}
+#navegador .navbar-encoger .dropdown-item {
+	background: rgba(0,0,0,0.7);
+}
+.dropdown-item{
+	padding: 0.25rem 1rem;
+}
+.dropdown-item:hover{
+	background-color: rgba(0,0,0,0.3);
+}
+.boton-ingreso {
+	/*border-color: #B370B3;*/
+	color: #FFF;
+	background-color: #FFBBFF;
+}
+.boton-ingreso:hover {
+	/*border-color: #B370B3;*/
+	color: #FFF;
+	background-color: rgba(255,187,255,0.9);
+}
+.boton-ingreso:active {
+	/*border-color: #B370B3;*/
+	box-shadow: 0 0 7px #B370B3;
+	color: #FFF;
+	background-color: rgba(255,187,255,0.7);
+}
+.boton-registro {
+	/*border-color: #79b3aa;*/
+	color: #FFF;
+	background-color: #81CCC1;
+}
+.boton-registro:hover {
+	/*border-color: #79b3aa;*/
+	color: #FFF;
+	background-color: rgba(129,204,193,0.9);
+}
+.boton-registro:active {
+	/*border-color: #79b3aa;*/
+	box-shadow: 0 0 7px #79b3aa;
+	color: #FFF;
+	background-color: rgba(129,204,193,0.7);
+}
+.banderas {
+	padding-top: 10px;
+	padding-right: 20px;
+}
+.btn-forms {
+	background-color: #79b3aa;
+	color: #FFF;
+}
+/*carrusel*/
+.carrusel-1{
+	position: relative;
+	z-index: -1;
+}
+.imagen-transparente {
+	position: absolute;
+	width: 150px;
+	height: auto;
+	padding-left: 100px;
+	padding-bottom: 200px;
+	margin-bottom: 200px;
+	z-index: 0;
+}
+/*Cuerpo*/
+.texto {
+	padding-top: 5%;
+	padding-left: 15%;
+	padding-right: 15%;
+	padding-bottom: 5%;
+	color: #FFF;
+	text-align: justify;
+	background-color: rgba(0,0,0,0.2);
+}
+/*Cards*/
+#nuestras-flores {
+	padding-top: 60px;
+}
+#nuestros-arreglos {
+	padding-top: 60px;
+	text-align: center;
+	margin-bottom: 0;
+}
+/*Contacto*/
+.boton-contacto {
+	color: #FFF;
+	background-color: #79B3AA;
+}
+.jumbotron {
+	text-align: center;
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-bottom: 10px;
+}
+.pie {
+	text-align: center;
+	padding-top: 32px;
+	color: #FFF6D4;
+	background-color: rgba(129,204,193,0);
+}
+.mapa {
+	height: 600px;
+}
+.cuerpo-modal {
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+}

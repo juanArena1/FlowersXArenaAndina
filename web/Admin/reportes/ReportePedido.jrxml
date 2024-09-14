@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="22279b28-dd4a-4695-b6aa-fd5b2d40709d">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="RolC" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     pedido.`Usuario_id` AS pedido_Usuario_id,COUNT(*),
+
+     usuario.`nombre_titular` AS usuario_nombre_titular,
+     usuario.`apellido_titular` AS usuario_apellido_titular,
+     usuario.`razonSocial` AS usuario_razonSocial,
+     rol.`nombre` AS rol_nombre
+FROM
+     `usuario` usuario INNER JOIN `pedido` pedido ON usuario.`id` = pedido.`Usuario_id`
+     INNER JOIN `rol` rol ON usuario.`Rol` = rol.`idRol`
+WHERE  rol.`nombre`=$P{RolC} GROUP BY pedido.Usuario_id]]>
+	</queryString>
+	<field name="pedido_Usuario_id" class="java.lang.Integer"/>
+	<field name="COUNT(*)" class="java.lang.Long"/>
+	<field name="usuario_nombre_titular" class="java.lang.String"/>
+	<field name="usuario_apellido_titular" class="java.lang.String"/>
+	<field name="usuario_razonSocial" class="java.lang.String"/>
+	<field name="rol_nombre" class="java.lang.String"/>
+	<background>
+		<band height="802" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="-19" width="555" height="241" uuid="9408eb93-6a12-41c2-8845-a1e8c920dda7"/>
+				<imageExpression><![CDATA["C:\\Users\\ACER\\Documents\\NetBeansProjects\\FlowersXProyecto\\web\\img\\top-reporte.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="92" y="649" width="721" height="153" uuid="88b0fd23-6b35-47f9-b464-b5427253aece"/>
+				<imageExpression><![CDATA["C:\\Users\\ACER\\Documents\\NetBeansProjects\\FlowersXProyecto\\web\\img\\bottom-reporte.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="72" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="132" y="0" width="92" height="20" uuid="82642f7d-1e0f-40b0-be47-8f78628d4dd8"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Nombre Titular]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="343" y="0" width="92" height="20" uuid="34f98d2f-5e72-41d6-940d-fb141ee2a873"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Razon Social]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="0" width="92" height="20" uuid="b1341717-4504-4e91-9e07-3537aa3adf96"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Usuario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="239" y="0" width="92" height="20" uuid="54f807b2-61fe-44fd-8b1f-65d549938215"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[ApellidoTitular]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="473" y="0" width="79" height="20" uuid="29137d75-43d0-41e6-a194-094723ee2f5a"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<textField>
+				<reportElement x="132" y="0" width="92" height="20" uuid="5ad9ad1a-bace-48ed-a265-2c141ee93790"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{usuario_nombre_titular}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="343" y="0" width="92" height="20" uuid="ef9f6c22-e8cf-4c3d-943e-ff20be93181e"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{usuario_razonSocial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="224" y="0" width="92" height="20" uuid="a78bf620-3292-4387-8af6-750b02dedaf8"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{usuario_apellido_titular}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="473" y="0" width="79" height="20" uuid="6e61509c-5b4e-48d5-b2ef-f41cf9baf760"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{COUNT(*)}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="17" y="0" width="92" height="20" uuid="ccf38879-c12e-450d-80a1-f0d72f60a2ce"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{rol_nombre}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="435" y="24" width="80" height="20" uuid="7211ef59-e6ea-4057-907f-29c93fa9f59f"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="515" y="24" width="40" height="20" uuid="e01740ee-5230-4c9d-8033-76f9a6d20b6c"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

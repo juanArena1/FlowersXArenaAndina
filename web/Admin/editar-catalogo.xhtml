@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Crear catalogo</title>
+        <link rel="stylesheet" href="../css/bootstrap.css"></link>
+        <link rel="stylesheet" href="../css/all.min.css"></link>
+        <link rel="stylesheet" href="../css/brands.css"></link>
+        <link rel="stylesheet" href="../css/estilos-paginas.css"></link>
+        <link href="../css/primefaces-omega.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="../css/estilos-crear-usuario.css"></link>
+    </h:head>
+    <h:body>
+        <div data-spy="scroll" data-target="#" data-offset="0" class="container">
+            <nav class="migas breadcrumb-nav" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../main-usuario.xhtml">Inicio</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Registrar producto</li>
+                </ol>
+            </nav>
+            <div class="titulo row">
+                <div class="col">
+                    <h1>Editar Producto</h1>
+                    <p>Por favor llena los siguientes datos.</p>
+                </div>
+            </div>
+            <script type="text/javascript">
+                PrimeFaces.locales['es'] = {
+                    closeText: 'Cerrar',
+                    prevText: 'Anterior',
+                    nextText: 'Siguiente',
+                    monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                    monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                    dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                    dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+                    dayNamesMin: ['D', 'L', 'M', 'X', 'J', 'V', 'S'],
+                    weekHeader: 'Semana',
+                    firstDayOfWeek: 1,
+                    isRTL: false,
+                    showMonthAfterYear: false,
+                    yearSuffix: '',
+                    timeOnlyTitle: 'Sólo hora',
+                    timeText: 'Tiempo',
+                    hourText: 'Hora',
+                    minuteText: 'Minuto',
+                    secondText: 'Segundo',
+                    currentText: 'Fecha actual',
+                    ampm: false,
+                    month: 'Mes',
+                    week: 'Semana',
+                    day: 'Día',
+                    allDayText: 'Todo el día'
+                };
+            </script>
+            <style type="text/css">
+                .ui-datalist .ui-datalist-content {
+                    border:0 none
+                }
+
+                .ui-datalist ul {
+                    padding: 0px 10px 0 20px;
+                    margin: 5px 0;
+                }
+
+                .value {
+                    font-weight: bold;
+                }
+
+                .ui-autocomplete-itemtip {
+                    -moz-box-sizing: content-box;
+                    -webkit-box-sizing: content-box;
+                    box-sizing: content-box;
+                }
+            </style>
+            <style type="text/css">
+                .value {
+                    font-weight: bold;
+                }
+            </style>
+            <div class="row">
+                <div class="col">
+                    <div class="jumbotron jumbotron-fluid">  
+                        <f:view>
+                            <h:form class="formulario" enctype="multipart/form-data">
+                                <div class="form-row">
+                                    <div class="col-md-5 mb-5">
+                                        <p:outputLabel value="Nombre del Producto:" for="nombreProducto" />
+                                        <p:inputText class="form-control" id="nombreProducto" value="#{productoControlador.producto.nombreProducto}" pt:placeholder="Nombre" title="NombreProducto" required="true" requiredMessage="The NombreProducto field is required."/>
+                                    </div>
+                                    <div class="col-md-5 mb-5">
+                                        <p:outputLabel value="Foto:" for="foto"/>
+                                        <h:inputFile class="form-control-file" id="foto" value="#{productoControlador.file}" title="Foto" required="true" requiredMessage="The Foto field is required."/>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <p:outputLabel value="Descripción:" for="descripcion" />
+                                        <p:inputTextarea class="form-control" pt:placeholder="Descripción..." rows="4" cols="30" id="descripcion" value="#{productoControlador.producto.descripcion}" title="Foto" required="true" requiredMessage="The Foto field is required."/>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-4 mb-4">
+                                        <p:outputLabel value="TiempoDeCultivo:" for="tiempoDeCultivo" />
+                                        <p:inputText class="form-control" pt:placeholder="Tiempo" id="tiempoDeCultivo" value="#{productoControlador.producto.tiempoDeCultivo}" title="TiempoDeCultivo" required="true" requiredMessage="The TiempoDeCultivo field is required."/>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <p:outputLabel value="Existencias:" for="existencias" />
+                                        <p:inputText class="form-control" pt:placeholder="Existencias" id="existencias" value="#{productoControlador.producto.existencias}" title="Existencias" required="true" requiredMessage="The Existencias field is required."/>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <p:outputLabel value="Precio:" for="precio" />
+                                        <p:inputText class="form-control" pt:placeholder="Precio" id="precio" value="#{productoControlador.producto.precio}" title="Precio" required="true" requiredMessage="The Precio field is required."/>
+                                    </div>
+                                </div>
+                                <p:commandButton action="#{productoControlador.editarProducto()}" type="submit" value="Editar producto"></p:commandButton>
+                            </h:form>
+                        </f:view>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="../../js/popper.min.js"></script>
+        <script src="../../js/jquery.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script src="../../js/main.js"></script>
+        <script src="../../js/formularios.js"></script>
+    </h:body>
+</html>
