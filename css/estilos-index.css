@@ -1,0 +1,37 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 4/07/2019, 07:13:29 AM
+    Author     : Aprendiz
+*/
+@import url('https://fonts.googleapis.com/css?family=Cookie');
+@import url('https://fonts.googleapis.com/css?family=Kaushan+Script');
+@import url('https://fonts.googleapis.com/css?family=KoHo');
+@import url('https://fonts.googleapis.com/css?family=Slabo+27px');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Niramit');
+*{
+	box-sizing: border-box;
+	padding:0px;
+	margin: 0px;
+}
+.container {
+	max-width: 91%;
+}
+.borde{
+	border:1px solid gray;
+}
+body{
+	/*background-image: linear-gradient(#B370B3,#FFBBFF,#FFF6D4,#81CCC1,#79B3AA);*/
+        background-color: #FFFFFF;
+	/*background-image: url('../img/hydrangea-2_1920.jpg');*/
+	/*background-image: url('../img/intentobg.png');*/
+	/*background-attachment: fixed;*/
+	font-family: 'KoHo', sans-serif;
+}
+a{
+    color: #666666;
+}

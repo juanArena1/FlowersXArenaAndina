@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e4e2faa6-c328-48c8-88d2-731588923e26">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fechaI" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fechaF" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     novedad.`descripcion` AS novedad_descripcion,
+     novedad.`fecha` AS novedad_fecha,
+     usuario.`nombre_titular` AS usuario_nombre_titular,
+     usuario.`apellido_titular` AS usuario_apellido_titular,
+     rol.`nombre` AS rol_nombre,
+     usuario.`email` AS usuario_email
+FROM
+     `usuario` usuario INNER JOIN `novedad` novedad ON usuario.`id` = novedad.`Usuario_id`
+     INNER JOIN `rol` rol ON usuario.`Rol` = rol.`idRol`
+WHERE  novedad.`fecha`   between $P{fechaI} and $P{fechaF}]]>
+	</queryString>
+	<field name="novedad_descripcion" class="java.lang.String"/>
+	<field name="novedad_fecha" class="java.sql.Date"/>
+	<field name="usuario_nombre_titular" class="java.lang.String"/>
+	<field name="usuario_apellido_titular" class="java.lang.String"/>
+	<field name="rol_nombre" class="java.lang.String"/>
+	<field name="usuario_email" class="java.lang.String"/>
+	<background>
+		<band height="802" splitType="Stretch">
+			<image>
+				<reportElement x="90" y="649" width="721" height="153" uuid="4ccac6f0-fbde-4cc9-97d9-d6eb14f3d56c"/>
+				<imageExpression><![CDATA["C:\\Users\\ACER\\Documents\\NetBeansProjects\\FlowersXProyecto\\web\\img\\bottom-reporte.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="0" y="-24" width="555" height="241" uuid="301d7f0a-0582-41e3-86cf-72db1925fbb8"/>
+				<imageExpression><![CDATA["C:\\Users\\ACER\\Documents\\NetBeansProjects\\FlowersXProyecto\\web\\img\\top-reporte.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="244" y="31" width="86" height="22" uuid="7cc01478-15d9-4479-9404-6f9effd09df8"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Novedades ]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement x="289" y="0" width="100" height="20" uuid="c6d09534-4dc8-4cb2-b03a-f54fad588982"/>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="435" y="0" width="100" height="20" uuid="13d72880-6458-4b8e-a883-4e76a2614bb5"/>
+				<text><![CDATA[E-mail]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="33" y="0" width="100" height="20" uuid="25b8ff5b-376a-4ba9-af88-bed144e40176"/>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="154" y="0" width="100" height="20" uuid="9d16059c-849b-463e-8e78-baf551d612c4"/>
+				<text><![CDATA[Apellido]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="301" splitType="Stretch">
+			<rectangle>
+				<reportElement x="33" y="106" width="510" height="183" uuid="30aa692e-d74e-4218-9f88-d08a50e7c019"/>
+			</rectangle>
+			<textField>
+				<reportElement x="44" y="119" width="486" height="159" uuid="e27a52e1-b8ce-4e33-a0c4-9651a7730ff8"/>
+				<textFieldExpression><![CDATA[$F{novedad_descripcion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="54" y="86" width="100" height="20" uuid="5db3b137-4a31-4f02-ba5b-906542e914d0"/>
+				<text><![CDATA[Descripcion]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="289" y="0" width="100" height="20" uuid="01d20905-0560-4a56-9b3d-65b0aa24a112"/>
+				<textFieldExpression><![CDATA[$F{novedad_fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="435" y="0" width="100" height="20" forecolor="#000099" uuid="154fcdf2-9c5e-4d04-a21d-a947e25c8116"/>
+				<textFieldExpression><![CDATA[$F{usuario_email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="33" y="0" width="100" height="20" uuid="f3b84188-7395-425f-bc4a-f385c3626940"/>
+				<textFieldExpression><![CDATA[$F{usuario_nombre_titular}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="154" y="0" width="100" height="20" uuid="a6c74883-c556-4d7f-b5e8-f63c9f15b6e0"/>
+				<textFieldExpression><![CDATA[$F{usuario_apellido_titular}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="435" y="34" width="80" height="20" uuid="6b2013cb-84e0-414d-9265-6f57907c4d4a"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="515" y="34" width="40" height="20" uuid="f897b370-edfa-46ee-8fb7-aa8e44ed453c"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css?family=Cookie');
+@import url('https://fonts.googleapis.com/css?family=Kaushan+Script');
+@import url('https://fonts.googleapis.com/css?family=KoHo');
+@import url('https://fonts.googleapis.com/css?family=Slabo+27px');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Niramit');
+
+*{
+    box-sizing: border-box;
+    padding: 0px;
+    margin:0px;
+}
+body{
+    background-image: linear-gradient(#B370B3,#FFBBFF,#FFF6D4,#81CCC1,#79B3AA);
+    background-attachment: fixed;
+    font-family: 'Niramit', sans-serif;
+    overflow-y:hidden;
+}
+.container {
+    max-width: 91%;
+    margin: 0 auto;
+}
+.navbar {
+    background-color: #EEE;
+    width: 100%;
+}
+.navbar-brand{
+    width: 220px;
+    margin: 0;
+}
+.navbar-brand img{
+    width: 140px;
+    height: auto;
+    margin-right: 20px;
+}
+.navbar-brand:hover {
+
+}
+.navbar-nav li a {
+    /*margin: 5px;*/
+}
+
+.navbar-nav li button {
+    margin: 5px;
+    width: 120px;
+}
+.boton-salir {
+    /*border-color: #B370B3;*/
+    color: #FFF;
+    background-color: #FFBBFF;
+}
+.boton-salir:hover {
+    /*border-color: #B370B3;*/
+    color: #FFF;
+    background-color: rgba(255,187,255,0.9);
+}
+.boton-salir:active {
+    /*border-color: #B370B3;*/
+    box-shadow: 0 0 7px #B370B3;
+    color: #FFF;
+    background-color: rgba(255,187,255,0.7);
+}
+.container-iframe{
+    padding-top: 67px;
+}
+.iconos {
+    font-size: 1.5em;
+    margin: 20px;
+    color: #FFBBFF;
+}
+.iconos:hover {
+    color: #B370B3;
+}
+.iframe-usuarios {
+    width: 98.33%;
+    z-index: -1;
+    padding: 0;
+    position: absolute;
+    height: 100vh;
+    overflow: scroll;
+}
+.card {
+    margin: 30px;
+    padding-right: 15px;
+    position: absolute;
+    z-index: 0;
+}
+.imagen-tarjeta {
+    padding: 10px;
+    width: 90px;
+    height: auto;
+}
+.boton-tarjeta {
+    width: 100px;
+    margin-top: 37px;
+    margin-right: 40px;
+    color: #FFF;
+    font-size: 0.7em;
+    background-color: #FFBBFF;
+}
+.boton-tarjeta:hover {
+    /*border-color: #B370B3;*/
+    color: #FFF;
+    background-color: rgba(255,187,255,0.9);
+}
+.boton-tarjeta:active {
+    /*border-color: #B370B3;*/
+    box-shadow: 0 0 7px #B370B3;
+    color: #FFF;
+    background-color: rgba(255,187,255,0.7);
+}
+.ui-confirm-dialog .ui-dialog {
+    position: fixed; /* or absolute */
+    top: 50%;
+    left: 50%;
+}

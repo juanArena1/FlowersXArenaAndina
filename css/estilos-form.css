@@ -1,0 +1,63 @@
+*{
+	box-sizing: border-box;
+	padding:0;
+	margin: 0;
+}
+body{
+	background-image: url(../img/fondo-principal.PNG);
+}
+form{
+	width: 50%;
+	margin:auto;
+	background: #FFBBFF;
+	border: 1px solid gray;
+	border-radius: 25px;
+	padding: 30px;
+	margin-top:200px;
+	font-size: 1em;
+}
+form .form-enc{
+	text-align: center;
+	padding: 15px;
+	border-bottom: 1px solid gray;
+}
+form .form-enc h1{
+	color: #FF99FF;
+	text-shadow: 1px 0 0 #B271B2, -1px 0 0 #B271B2, 0 1px 0 #B271B2, 0 -1px 0 #B271B2, 1px 1px #B271B2, -1px -1px 0 #B271B2, 1px -1px 0 #B271B2, -1px 1px 0 #B271B2;
+}
+form .form-cuerpo{
+	text-align: center;
+	padding: 20px;
+	border-bottom: 1px solid gray
+}
+form .form-cuerpo label{
+	color: #B271B2;
+}
+form .form-pie{
+	text-align: center;
+}
+form label, form input{
+	display: inline-block;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+form label{
+	width: 30%;
+}
+form input{
+	width: 50%;
+	font-size: 1em;	
+}
+form a{
+	display: inline-block;
+	padding: 10px;
+	background: #B271B2;
+	color: #fff;
+	text-decoration: none;
+	margin: 10px;
+	/*border: 1px solid gray;*/
+	border-radius: 5px;
+}
+form a:hover{
+	background: rgba(0,0,0,0.5);
+}

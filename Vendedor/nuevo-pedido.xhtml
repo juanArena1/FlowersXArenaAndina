@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <meta charset="UTF-8"></meta>
+        <title>Crear Pedido</title>
+        <link rel="stylesheet" href="../css/bootstrap.css"></link>
+        <link rel="stylesheet" href="../css/all.min.css"></link>
+        <link rel="stylesheet" href="../css/brands.css"></link>
+        <link rel="stylesheet" href="../css/estilos-paginas.css"></link>
+        <link rel="stylesheet" href="../css/estilos-crear-usuario.css"></link>
+        <link href="../css/primefaces-omega.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>
+        <div data-spy="scroll" data-target="#" data-offset="0" class="container">
+            <nav class="migas breadcrumb-nav" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../main-usuario.xhtml">Inicio</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Crear pedido</li>
+                </ol>
+            </nav>
+            <div class="titulo row">
+                <div class="col">
+                    <h1>Crear Pedido</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="jumbotron jumbotron-fluid">
+                        <div class="container">
+                            <f:view>
+                                <style type="text/css">
+                                    .ui-datalist .ui-datalist-content {
+                                        border:0 none
+                                    }
+
+                                    .ui-datalist ul {
+                                        padding: 0px 10px 0 20px;
+                                        margin: 5px 0;
+                                    }
+
+                                    .value {
+                                        font-weight: bold;
+                                    }
+
+                                    .ui-autocomplete-itemtip {
+                                        -moz-box-sizing: content-box;
+                                        -webkit-box-sizing: content-box;
+                                        box-sizing: content-box;
+                                    }
+                                </style>
+                                <h:form>
+                                    <div class="form-row">
+                                        <script type="text/javascript">
+                                            PrimeFaces.locales['es'] = {
+                                                closeText: 'Cerrar',
+                                                prevText: 'Anterior',
+                                                nextText: 'Siguiente',
+                                                monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                                                monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                                                dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                                                dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+                                                dayNamesMin: ['D', 'L', 'M', 'X', 'J', 'V', 'S'],
+                                                weekHeader: 'Semana',
+                                                firstDayOfWeek: 1,
+                                                isRTL: false,
+                                                showMonthAfterYear: false,
+                                                yearSuffix: '',
+                                                timeOnlyTitle: 'Sólo hora',
+                                                timeText: 'Tiempo',
+                                                hourText: 'Hora',
+                                                minuteText: 'Minuto',
+                                                secondText: 'Segundo',
+                                                currentText: 'Fecha actual',
+                                                ampm: false,
+                                                month: 'Mes',
+                                                week: 'Semana',
+                                                day: 'Día',
+                                                allDayText: 'Todo el día'
+                                            };
+                                        </script>
+                                        <style type="text/css">
+                                            .value {
+                                                font-weight: bold;
+                                            }
+                                        </style>
+                                        <div class="col-2 md-2 mb-2">
+                                            <p:outputLabel value="Fecha de creación:" /><br/>
+                                            <p:calendar id="popup" widgetVar="calendario" value="#{pedidoControlador.pedido.fechaDeCreacion}" mindate="calendario.today()" maxdate="calendario.today()" locale="es" pt:placeholder="AAAA-MM-DD" pattern="yyyy-MM-dd" />
+                                        </div>
+                                        <p:commandButton styleClass="boton-pago" action="#{pedidoControlador.crearPedido(productoControlador.carrito)}" type="submit" style="height: 2.5em; margin-left: 2em; margin-top: 2.17em" icon="fas fa-dollar-sign" value="#{msjCrearPedido.botonPago}" />
+                                        <!-- <p:overlayPanel id="carritoPanel" for="verCarrito" hideEffect="fade"> -->
+                                            <h:form id="form">
+                                                <p:dataTable id="tablaCarrito" var="producto" value="#{productoControlador.getCarrito()}">
+                                                    <f:facet name="header">
+                                                        #{msjCrearPedido.contenidoCarrito}
+                                                    </f:facet>
+                                                    <p:column headerText="#{msjCrearPedido.nombreProducto}">
+                                                        <h:outputText value="#{producto.nombreProducto}" />
+                                                    </p:column>
+                                                    <p:column>
+                                                        <p:commandLink class="opciones-tabla" immediate="true" process="@this" action="#{productoControlador.removerDelCarrito(producto)}" update="tablaCarrito">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                        </p:commandLink>
+                                                    </p:column>
+                                                </p:dataTable>
+                                            </h:form>
+                                        <!-- </p:overlayPanel> -->
+                                    </div>
+                                    <br/>
+                                    <div class="form-row">
+                                        <h3>Agregar productos</h3>
+                                        <div class="col-md-12 mb-12">
+                                            <c:forEach items="#{productoControlador.listar()}" var="p">
+                                                <div class="col-md-4 mb-4" style="float:left">
+                                                    <p:panelGrid columns="2" style="margin: 1em">
+                                                        <f:facet name="header">
+                                                            <img src="#{p.foto}" style="overflow: hidden; height: 10em; width: 21em; object-fit: cover" alt="#{p.nombreProducto}" />
+                                                        </f:facet>
+
+                                                        <h:outputText value="#{msjCrearPedido.nombreProducto}" />
+                                                        <h:outputText value="#{p.nombreProducto}" />
+
+                                                        <c:if test="#{!(p.existencias eq 0)}">
+                                                            <h:outputText value="#{msjCrearPedido.existencias}" />
+                                                            <h:outputText value="Disponible" />
+                                                            <p:commandButton immediate="true" action="#{productoControlador.agregarAlCarrito(p)}" process="@this" icon="fas fa-cart-plus" value="#{msjCrearPedido.botonCarrito}" update="form:tablaCarrito">
+                                                                <!-- <f:param name="action" value="{productoControlador.carrito.add(p)}" /> -->
+                                                            </p:commandButton>
+                                                            <h:outputText value="" />
+                                                        </c:if>
+                                                        <c:if test="#{p.existencias eq 0}">
+                                                            <h:outputText value="#{msjCrearPedido.existencias}" />
+                                                            <h:outputText value="Agotada" />
+                                                            <p:commandButton disabled="true" icon="fas fa-cart-plus" value="#{msjCrearPedido.botonCarrito}" />
+                                                            <h:outputText value="" />
+                                                        </c:if>
+                                                    </p:panelGrid>
+                                                </div>
+                                            </c:forEach>
+                                        </div>
+                                    </div>
+                                </h:form>
+                            </f:view>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="js/jquery-3.4.1.js" type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" type="text/javascript"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="../js/main.js" type="text/javascript"></script>
+        <script src="../js/formularios.js" type="text/javascript"></script>
+    </h:body>
+</html>
+

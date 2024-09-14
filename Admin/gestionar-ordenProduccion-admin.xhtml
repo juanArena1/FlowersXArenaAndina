@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <meta charset="UTF-8"></meta>
+        <title>Gestionar Orden Producción</title>
+        <link rel="stylesheet" href="../css/bootstrap.css"></link>
+        <link rel="stylesheet" href="../css/all.min.css"></link>
+        <link rel="stylesheet" href="../css/brands.css"></link>
+        <link rel="stylesheet" href="../css/estilos-paginas.css"></link>
+        <link rel="stylesheet" href="../css/estilos-gestionar-usuarios.css"></link>
+        <link href="../css/primefaces-omega.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>
+        <h:outputStylesheet name="../css/bootstrap.css" />
+        <div data-spy="scroll" data-target="#" data-offset="0" class="container">
+            <div class="row">
+                <div class="col tabla">
+                    <f:view>
+                        <div class="col">
+                            <h1><h:outputText value="Orden Producción"/></h1>
+                        </div>
+                        <style type="text/css">
+                            .ui-datatable .ui-datatable-header {
+                                text-align: right !important;
+                            }
+
+                            .ui-button-text-only .ui-button-text {
+                                padding: 0.3em 0.4em;
+                            }
+
+                            .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-chkbox {
+                                visibility: hidden;
+                            }
+
+                            .ui-filter-column .ui-column-customfilter .custom-filter {
+                                width: 100%;
+                                box-sizing: border-box;
+                            }
+                        </style>
+                        <h:form>
+                            <p:dataTable id="tablaOrdenProduccion" var="ordenProduccion" value="#{ordenProduccionControlador.consultarOrdenproduccion()}" widgetVar="tablaOrdenProduccion" 
+                                         emptyMessage="No se han encontrado Orden Producción con los criterios dados." filteredValue="#{ordenProduccionControlador.listaOrdenProduccion}" 
+                                         resizableColumns="true" rows="10" paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="5,10,15" style="margin-bottom:20px">
+                                <f:facet name="header">
+                                    <p:outputPanel>
+                                        <h:outputText value="Buscar todos los campos: " />
+                                        <p:inputText id="globalFilter" onkeyup="PF('tablaOrdenProduccion').filter()" style="width:200px" placeholder="Palabra clave..."/>
+                                     </p:outputPanel>
+                                </f:facet>
+                                <p:column filterBy="#{ordenProduccion.fechainicio}" headerText="Fecha de inicio" filterMatchMode="contains">
+                                    <h:outputText value="#{ordenProduccion.fechainicio}" />
+                                </p:column>
+                                <p:column filterBy="#{ordenProduccion.fechaFin}" headerText="Fecha de culminacion" filterMatchMode="contains">
+                                    <h:outputText value="#{ordenProduccion.fechaFin}" />
+                                </p:column>
+                                <p:column filterBy="#{ordenProduccion.pedidoidPedido}" headerText="Id de pedido" filterMatchMode="contains">
+                                    <h:outputText value="#{ordenProduccion.pedidoidPedido.idPedido}" />
+                                </p:column>
+                                <p:column filterBy="#{ordenProduccion.usuarioid}" headerText="Usuario" filterMatchMode="contains">
+                                    <f:facet name="filter">
+                                        <p:selectOneMenu onchange="PF('tablaSolicitudes').filter()" styleClass="custom-filter">
+                                        <f:selectItem itemLabel="Seleccione uno..." itemValue="#{null}" noSelectionOption="true" />
+                                        <f:selectItems value="#{usuarioControlador.consultarUsuario()}" var="usuario" itemValue="#{usuario.id}" itemLabel="#{usuario.titular}" />
+                                    </p:selectOneMenu>
+                                    </f:facet>
+                                    <h:outputText value="#{ordenProduccion.usuarioid.titular}" />
+                                </p:column>
+                                <p:column>
+                                    <h:commandLink class="opciones-tabla" action="#{ordenProduccionControlador.preEditarOrdenproduccion(ordenproduccion)}" onclick="return confirm('¿Estás seguro?')"><i class="fas fa-pen"></i></h:commandLink>
+                                    <h:commandLink class="opciones-tabla" action="#{ordenProduccionControlador.eliminarOrdenproduccion(ordenproduccion)}" onclick="return confirm('¿Estás seguro?')"><i class="fas fa-trash-alt"></i></h:commandLink>
+                                </p:column>
+                            </p:dataTable>
+                            <h3>Exportar datos a Microsoft Excel</h3>
+                            <h:commandLink>
+                                <p:graphicImage name="images/excel.png" style="width:50px"/>
+                                <p:dataExporter type="xls" target="tablaOrdenProduccion" fileName="Solicitudes" pageOnly="true"/>
+                            </h:commandLink>
+                        </h:form>
+                        <a href="crear-solicitud.xhtml"><button type="button" class="boton-salir btn" data-toggle="tooltip" data-placement="bottom">
+                                Crear solicitud
+                            </button>  
+                        </a> 
+                    </f:view>
+                </div>
+            </div>
+        </div>
+        <script src="../../js/popper.min.js"></script>
+        <script src="../../js/jquery.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script src="../../js/admin.js"></script>
+        <script src="../../js/main.js"></script>
+    </h:body>
+</html>
+
